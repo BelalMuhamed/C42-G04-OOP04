@@ -4,11 +4,20 @@
     {
         public int real { get; set; }
         public int imaginary { get; set; }
-        public static Complex operator+(Complex left, Complex right)
+        public static Complex operator +(Complex left, Complex right)
+        {
+            return new Complex { real = left.real + right.real, imaginary = left.imaginary + right.imaginary };
+        }
+        public static Complex operator ++(Complex complex)
             {
-            return new Complex {real=left.real + right.real , imaginary=left.imaginary+right.imaginary};
+            if (complex is not null)
+            {
+                // return new Complex { real = complex.real + 1, imaginary = complex.imaginary }; دي طريقة والي تحت طريقة الاتنين نفس الحاجة 
+                complex.real++;
+                return complex;
             }
-           
+            return complex;
+            }
         public override string ToString()
         {
             return $"{real} + {imaginary}i";
@@ -28,6 +37,7 @@
             Complex c03 = new Complex();
             c03 = c01 + c02;
             Console.WriteLine(c03);
+            Console.WriteLine(++c01);
         }
     }
 }
