@@ -51,8 +51,35 @@
            return new Point3D(X=this.X,Y=this.Y,Z=this.Z);  
         }
     }
-   
-        internal class Program
+
+    class Maths
+    {
+        public static int Add(int a, int b)
+        {
+            return a + b;
+        }
+
+        public static int Subtract(int a, int b)
+        {
+            return a - b;
+        }
+
+        public static int Multiply(int a, int b)
+        {
+            return a * b;
+        }
+
+        public static double Divide(int a, int b)
+        {
+            if (b == 0)
+            {
+                throw new DivideByZeroException("Division by zero is not allowed.");
+            }
+            return (double)a / b;
+        }
+    }
+
+    internal class Program
     {
 
         static double TkeCoordinate()
@@ -111,6 +138,16 @@
             }
            Point3D p03= (Point3D)p02.Clone();
             Console.WriteLine(p03);
+
+            #region SecondProject
+            int a = 10;
+            int b = 5;
+
+            Console.WriteLine("Addition: " + Maths.Add(a, b));
+            Console.WriteLine("Subtraction: " + Maths.Subtract(a, b));
+            Console.WriteLine("Multiplication: " + Maths.Multiply(a, b));
+            Console.WriteLine("Division: " + Maths.Divide(a, b));
+            #endregion
         }
     }
 }
