@@ -79,6 +79,47 @@
         }
     }
 
+    internal class Duration
+    {
+        public int Hours { get; set; }
+        public int Minutes { get; set; }
+        public int Seconds { get; set; }
+        public override string ToString()
+        {
+            return $"{Hours:D2}:{Minutes:D2}:{Seconds:D2}";
+        }
+
+        
+        public override bool Equals(object obj)
+        {
+            if (obj == null || GetType() != obj.GetType())
+            {
+                return false;
+            }
+
+            Duration other = (Duration)obj;
+            return Hours == other.Hours && Minutes == other.Minutes && Seconds == other.Seconds;
+        }
+
+        
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(Hours, Minutes, Seconds);
+        }
+        
+        public Duration(int hours, int minutes, int seconds)
+        {
+            Hours = hours;
+            Minutes = minutes;
+            Seconds = seconds;
+        }   
+        public Duration(int TotalSeconds) 
+        {
+            Hours = TotalSeconds / 3600;
+            Minutes = (TotalSeconds % 3600) / 60;
+            Seconds = TotalSeconds % 60;
+        }
+    }
     internal class Program
     {
 
@@ -148,6 +189,13 @@
             Console.WriteLine("Multiplication: " + Maths.Multiply(a, b));
             Console.WriteLine("Division: " + Maths.Divide(a, b));
             #endregion
+
+            Duration duration = new Duration(10, 5, 3);
+            Console.WriteLine(duration);
+
+            Duration duratio = new Duration(7800);
+            Console.WriteLine(duratio);
+
         }
     }
 }
