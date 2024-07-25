@@ -41,6 +41,15 @@
             
             
         }
+        public static explicit operator string(Complex complex)
+        {
+        return complex.ToString();
+        } 
+        public static implicit operator int (Complex complex)
+        {
+
+        return complex.real; 
+        }
         public override string ToString()
         {
             return $"{real} + {imaginary}i";
@@ -59,8 +68,13 @@
             Complex c02 = new Complex() {real = 4,imaginary = 4};
             Complex c03 = new Complex();
             c03 = c01 + c02;
+            c01++;
             Console.WriteLine(c03);
-            Console.WriteLine(c02>c01);
+            Console.WriteLine(c03>c01);
+            string x = (string)c01;
+            Console.WriteLine(x);
+            int xx = c02;
+            Console.WriteLine(xx);
         }
     }
 }
